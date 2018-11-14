@@ -2,7 +2,6 @@
 #include "descorer.h"
 
 int error;
-int kP = 1;
 
 void setDescorerMtr(int power){
   if (getDescorerEnc() < DESCORER_MIN || getDescorerEnc() > DESCORER_MAX){
@@ -13,5 +12,5 @@ void setDescorerMtr(int power){
 
 void setDescorerPos(int posGoal){
   error = posGoal - getDescorerEnc();
-  setDescorerMtr(error * kP);
+  setDescorerMtr(error * DESCORER_KP);
 }
