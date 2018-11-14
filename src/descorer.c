@@ -2,7 +2,7 @@
 #include "descorer.h"
 
 int error;
-int kP;
+int kP = 1;
 
 void setDescorerMtr(int power){
   if (getDescorerEnc() < DESCORER_MIN || getDescorerEnc() > DESCORER_MAX){
