@@ -1,0 +1,45 @@
+#ifndef _GLOBALS_H_
+#define _GLOBALS_H_
+
+//DEFINE MOTORS:
+#define BALL_INTAKE_MTR 1
+
+#define DRIVE_LEFT_A_MTR 2
+
+#define CATAPULT_A_MTR 3      // Power Expander A
+#define DRIVE_LEFT_B_MTR 4    // Power Expander B
+
+#define DRIVE_LEFT_C_MTR 5
+#define DRIVE_RIGHT_C_MTR 6
+
+#define DRIVE_RIGHT_B_MTR 7 // Power Expander C
+#define CATAPULT_B_MTR 9   // Power Expander D
+
+#define DRIVE_RIGHT_A_MTR 8
+
+#define DESCORER_MTR 10
+
+//DEFINE ANALOG SENSORS
+
+#define CATAPULT_POT 1
+
+//DEFINE DIGITAL SENSORS
+#define DESCORER_ENC_TOP 1
+#define DESCORER_ENC_BOT 2
+
+//CATAPULT
+#define CATAPULT_UP_POS 0
+#define CATAPULT_DOWN_POS 2000
+#define CATAPULT_FIRE_POS 3000
+
+//DESCORER
+#define DESCORER_POWER 110
+
+#define DESCORER_MAX 200
+#define DESCORER_MIN 200
+
+//BALL INTAKE
+#define BALL_INTAKE_POWER 110
+
+
+#endif // _GLOBALS_H_
