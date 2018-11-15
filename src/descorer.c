@@ -10,7 +10,7 @@ void setDescorerMtr(int power){
   motorSet(DESCORER_MTR, power);
 }
 
-void setDescorerPos(int posGoal){
+int calculateDescorerPID(int posGoal){
   error = posGoal - getDescorerEnc();
-  setDescorerMtr(error * DESCORER_KP);
+  return error * DESCORER_KP;
 }

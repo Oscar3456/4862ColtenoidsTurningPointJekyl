@@ -33,6 +33,7 @@
 #include "catapult.h"
 #include "descorer.h"
 #include "sensors.h"
+#include "driverInput.h"
 
 
 // Allow usage of this file in C++ programs
