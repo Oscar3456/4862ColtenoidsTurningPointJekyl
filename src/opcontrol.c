@@ -29,9 +29,6 @@
 void operatorControl() {
 	int descorerPos;
 	while (1) {
-		lcdClear(uart1);
-		lcdPrint(uart1, 1, "%4d", getCatapultPot());
-		lcdPrint(uart1, 2, "%4d", getDescorerEnc());
 		/*
 		if(joystickGetDigital(1, 5, JOY_UP)){
 			setCatapultPos(CATAPULT_FIRE_POS);
