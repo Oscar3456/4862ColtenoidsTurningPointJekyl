@@ -7,4 +7,11 @@ int getDescorerEnc();
 
 int getCatapultPot();
 
+int getLeftInches();
+
+int getRightInches();
+
+int getBackInches();
+
+
 #endif // _SENSORS_H_
