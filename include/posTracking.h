@@ -7,6 +7,8 @@ int degreeToRad(int degrees){
   return degrees * 0.01745329251994329576923690768489;
 }
 
-void driveToPos(int x, int y);
+void driveToPos(int x, int y, float maxVel);
+
+void turnToAngle(float angle, float maxVel);
 
 #endif // _POSTRACKING_H_

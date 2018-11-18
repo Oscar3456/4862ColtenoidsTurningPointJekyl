@@ -65,5 +65,9 @@
 
 #define ANGLE_DEADBAND 0.01
 
+#define MAX_DRIVE_VEL 100
+
+#define DRIVE_KP 0.5
+
 
 #endif // _GLOBALS_H_
