@@ -2,11 +2,13 @@
 #include "driverInput.h"
 
 int getInputLeftDrive(){
-  return joystickGetAnalog(1, 2) + joystickGetAnalog(1, 1);
+  int linear = joystickGetAnalog(1, 2) + joystickGetAnalog(1, 1);
+  return (linear * linear * linear) / 16129;
 }
 
 int getInputRightDrive(){
-  return joystickGetAnalog(1, 2) - joystickGetAnalog(1, 1);
+  int linear = joystickGetAnalog(1, 2) - joystickGetAnalog(1, 1);
+  return (linear * linear * linear) / 16129;
 }
 
 int getInputCatapultState(){
