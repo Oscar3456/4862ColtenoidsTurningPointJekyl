@@ -3,6 +3,6 @@
 
 void setDescorerMtr(int power);
 
-int calculateDescorerPID(int posGoal);
+void setDescorerPos(int posGoal);
 
 #endif // _DESCORER_H_

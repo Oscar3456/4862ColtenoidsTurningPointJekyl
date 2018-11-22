@@ -35,6 +35,7 @@ void initializeIO() {
  */
 void initialize() {
   setTeamName("4862HYDE");
-
+  lcdInit(uart1);
+  lcdClear(uart1);
   initSensors();
 }

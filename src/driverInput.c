@@ -3,12 +3,18 @@
 
 int getInputLeftDrive(){
   int linear = joystickGetAnalog(1, 2) + joystickGetAnalog(1, 1);
-  return (linear * linear * linear) / 16129;
+  if (abs(linear) < 15){
+    linear = 0;
+  }
+  return linear;
 }
 
 int getInputRightDrive(){
   int linear = joystickGetAnalog(1, 2) - joystickGetAnalog(1, 1);
-  return (linear * linear * linear) / 16129;
+  if (abs(linear) < 15){
+    linear = 0;
+  }
+  return linear;
 }
 
 int getInputCatapultState(){

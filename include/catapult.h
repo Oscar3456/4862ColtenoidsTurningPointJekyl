@@ -3,7 +3,7 @@
 
 void setCatapultMtr(int power);
 
-int calculateCatapultPID(int posGoal);
+void setCatapultPos(int posGoal);
 
 
 #endif // _CATAPULT_H_

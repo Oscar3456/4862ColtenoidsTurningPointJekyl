@@ -1,5 +1,5 @@
-#ifndef _USERINPUT_H_
-#define _USERINPUT_H_
+#ifndef _DRIVERINPUT_H_
+#define _DRIVERINPUT_H_
 
 int getInputLeftDrive();
 
@@ -11,4 +11,4 @@ int getInputDescorer();
 
 int getInputBallIntake();
 
-#endif // _USERINPUT_H_
+#endif //_DRIVERINPUT_H_

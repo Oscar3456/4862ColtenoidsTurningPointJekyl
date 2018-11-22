@@ -2,7 +2,7 @@
 #include "drive.h"
 
 void setDriveMtr(int leftPower, int rightPower){
-  leftPower *= -1;
+  leftPower *= 1;
   rightPower *= -1;
 
   motorSet(DRIVE_LEFT_A_MTR, leftPower);
