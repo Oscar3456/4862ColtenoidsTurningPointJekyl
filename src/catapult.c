@@ -1,8 +1,14 @@
 #include "main.h"
 #include "catapult.h"
 
+
+
 int error;
 int integral;
+
+int catapultMtrGoal;
+int catapultPosGoal;
+bool catapultPIDEnabled;
 
 void setCatapultMtr(int power){
   if(power < -127){
@@ -16,12 +22,28 @@ void setCatapultMtr(int power){
 
 void setCatapultPos(int posGoal){
   error = posGoal - getCatapultPot(); // calculate error
-/*
-  if(abs(error) < CATAPULT_INTEGRAL_RANGE && abs(error) > 20){ // if in range, calculate integral
+
+  if(abs(error) < CATAPULT_INTEGRAL_RANGE){ // if in range, calculate integral
     integral += error;
   } else {
     integral = 0;
-  }*/
+  }
 
-  setCatapultMtr((error * CATAPULT_KP));// + (integral * CATAPULT_KI)); // set motors
+  catapultMtrGoal = (error * 0.55) + (integral * 0.001); // set motors
+  setCatapultMtr(catapultMtrGoal);
+}
+
+void catapultCtrl(){
+  analogCalibrate(CATAPULT_POT);
+  while(1){
+    if(catapultPIDEnabled){
+      setCatapultPos(catapultPosGoal);
+    }
+    setCatapultMtr(catapultMtrGoal);
+    wait(20);
+  }
+}
+
+int getCatapultPot(){
+  return analogReadCalibrated(CATAPULT_POT);
 }

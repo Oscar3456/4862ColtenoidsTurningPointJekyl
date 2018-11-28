@@ -5,4 +5,8 @@ void setDescorerMtr(int power);
 
 void setDescorerPos(int posGoal);
 
+int getDescorerEnc();
+
+void descorerCtrl();
+
 #endif // _DESCORER_H_

@@ -1,5 +1,5 @@
-#ifndef _GLOBALS_H_
-#define _GLOBALS_H_
+#ifndef _GLOBAL_H_
+#define _GLOBAL_H_
 
 //DEFINE MOTORS:
 #define BALL_INTAKE_MTR 1
@@ -27,16 +27,6 @@
 #define DESCORER_ENC_TOP 1
 #define DESCORER_ENC_BOT 2
 
-//CATAPULT
-#define CATAPULT_UP_POS 1400
-#define CATAPULT_DOWN_POS 250
-#define CATAPULT_FIRE_POS 160
-
-#define CATAPULT_INTEGRAL_RANGE 400
-#define CATAPULT_KP 0.2
-#define CATAPULT_KI 0
-
-//DESCORER
 #define DESCORER_POWER 110
 
 #define DESCORER_MAX 200
@@ -44,8 +34,16 @@
 
 #define DESCORER_KP 1
 
-//BALL INTAKE
+
+#define CATAPULT_UP_POS 5
+#define CATAPULT_DOWN_POS -1150
+#define CATAPULT_FIRE_POS  -1230
+
+#define CATAPULT_INTEGRAL_RANGE 400
+#define CATAPULT_KP 0.2
+#define CATAPULT_KI 0.001
+
+
 #define BALL_INTAKE_POWER 110
 
-
-#endif // _GLOBALS_H_
+#endif // _GLOBAL_H_
