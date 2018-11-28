@@ -30,17 +30,21 @@ void operatorControl() {
 	int descorerPos;
 	int save;
 	while (1) {
+
 		lcdClear(uart1);
 		lcdPrint(uart1, 1, "%4d", getCatapultPot());
 		lcdPrint(uart1, 2, "%4d", motorGet(CATAPULT_A_MTR));
 
+		catapultPIDEnabled = true;
 		if(joystickGetDigital(1, 6, JOY_UP)){
-			setCatapultPos(CATAPULT_FIRE_POS);
+			catapultPosGoal = CATAPULT_FIRE_POS;
 		} else if (joystickGetDigital(1, 6, JOY_DOWN)){
-			setCatapultPos(CATAPULT_UP_POS);
+			catapultPIDEnabled = false;
+			catapultMtrGoal = 0;
 		} else{
-			setCatapultPos(CATAPULT_DOWN_POS);
+			catapultPosGoal = CATAPULT_DOWN_POS;
 		}
+		catapultCtrl();
 
 		setDriveMtr(getInputLeftDrive(), getInputRightDrive());
 /*

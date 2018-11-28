@@ -21,6 +21,7 @@ void setCatapultMtr(int power){
 }
 
 void setCatapultPos(int posGoal){
+/*
   error = posGoal - getCatapultPot(); // calculate error
 
   if(abs(error) < CATAPULT_INTEGRAL_RANGE){ // if in range, calculate integral
@@ -29,8 +30,13 @@ void setCatapultPos(int posGoal){
     integral = 0;
   }
 
-  catapultMtrGoal = (error * 0.55) + (integral * 0.001); // set motors
-  setCatapultMtr(catapultMtrGoal);
+  catapultMtrGoal = (error * 0.55) + (integral * 0.001); // set motors*/
+
+  if (getCatapultPot() > posGoal){
+    catapultMtrGoal = -110;
+  } else {
+    catapultMtrGoal = 0;
+  }
 }
 
 void catapultCtrl(){
@@ -40,7 +46,6 @@ void catapultCtrl(){
       setCatapultPos(catapultPosGoal);
     }
     setCatapultMtr(catapultMtrGoal);
-    wait(20);
   }
 }
 
