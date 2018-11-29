@@ -4,6 +4,8 @@
 extern int catapultMtrGoal;
 extern int catapultPosGoal;
 extern bool catapultPIDEnabled;
+extern int catapultOffset;
+void initCatapult();
 
 void setCatapultMtr(int power);
 

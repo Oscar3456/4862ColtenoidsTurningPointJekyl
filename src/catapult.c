@@ -10,6 +10,12 @@ int catapultMtrGoal;
 int catapultPosGoal;
 bool catapultPIDEnabled;
 
+int catapultOffset;
+
+void initCatapult(){
+  catapultOffset = analogRead(CATAPULT_POT);
+}
+
 void setCatapultMtr(int power){
   if(power < -127){
     power = -127;
@@ -21,9 +27,9 @@ void setCatapultMtr(int power){
 }
 
 void setCatapultPos(int posGoal){
-/*
-  error = posGoal - getCatapultPot(); // calculate error
 
+  error = posGoal - getCatapultPot(); // calculate error
+/*
   if(abs(error) < CATAPULT_INTEGRAL_RANGE){ // if in range, calculate integral
     integral += error;
   } else {
@@ -32,23 +38,25 @@ void setCatapultPos(int posGoal){
 
   catapultMtrGoal = (error * 0.55) + (integral * 0.001); // set motors*/
 
-  if (getCatapultPot() > posGoal){
-    catapultMtrGoal = -110;
-  } else {
-    catapultMtrGoal = 0;
+  if (getCatapultPot() > posGoal + 20){
+    catapultMtrGoal = - 110;
+  } else  if (getCatapultPot() > posGoal){
+      catapultMtrGoal = - 30;
+    }else {
+    catapultMtrGoal = -10;
   }
 }
 
 void catapultCtrl(){
-  analogCalibrate(CATAPULT_POT);
-  while(1){
+
+  //while(1){
     if(catapultPIDEnabled){
       setCatapultPos(catapultPosGoal);
     }
     setCatapultMtr(catapultMtrGoal);
-  }
+  //}
 }
 
 int getCatapultPot(){
-  return analogReadCalibrated(CATAPULT_POT);
+  return analogRead(CATAPULT_POT) - catapultOffset;
 }

@@ -27,22 +27,21 @@
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 void operatorControl() {
-	int descorerPos;
-	int save;
 	while (1) {
 
 		lcdClear(uart1);
 		lcdPrint(uart1, 1, "%4d", getCatapultPot());
-		lcdPrint(uart1, 2, "%4d", motorGet(CATAPULT_A_MTR));
+		lcdPrint(uart1, 2, "%4d", catapultMtrGoal);
 
 		catapultPIDEnabled = true;
 		if(joystickGetDigital(1, 6, JOY_UP)){
-			catapultPosGoal = CATAPULT_FIRE_POS;
+			catapultPIDEnabled = false;
+			catapultMtrGoal = -110;
 		} else if (joystickGetDigital(1, 6, JOY_DOWN)){
 			catapultPIDEnabled = false;
 			catapultMtrGoal = 0;
 		} else{
-			catapultPosGoal = CATAPULT_DOWN_POS;
+			catapultPosGoal = -1155;
 		}
 		catapultCtrl();
 

@@ -37,5 +37,5 @@ void initialize() {
   setTeamName("4862HYDE");
   lcdInit(uart1);
   lcdClear(uart1);
-  analogCalibrate(CATAPULT_POT);
+  initCatapult();
 }
