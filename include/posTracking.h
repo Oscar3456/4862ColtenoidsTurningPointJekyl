@@ -3,9 +3,7 @@
 
 void trackPos();
 
-int degreeToRad(int degrees){
-  return degrees * 0.01745329251994329576923690768489;
-}
+int degreeToRad(int degrees);
 
 void driveToPos(int x, int y, float maxVel);
 

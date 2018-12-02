@@ -5,6 +5,10 @@ float globalX;
 float globalY;
 float globalAngle;
 
+int degreeToRad(int degrees){
+  return degrees * 0.01745329251994329576923690768489;
+}
+
 void trackPos(){
   float deltaAngle;
   float averageAngle;
