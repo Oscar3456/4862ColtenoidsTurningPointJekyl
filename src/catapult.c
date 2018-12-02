@@ -7,6 +7,8 @@ int error;
 int integral;
 
 int catapultMtrGoal;
+int catapultMtrCurrent;
+bool catapultSlewEnabled;
 int catapultPosGoal;
 bool catapultPIDEnabled;
 
@@ -16,14 +18,20 @@ void initCatapult(){
   catapultOffset = analogRead(CATAPULT_POT);
 }
 
-void setCatapultMtr(int power){
-  if(power < -127){
-    power = -127;
-  } else if (power > 127){
-    power = 127;
+void setCatapultMtr(int mtrGoal){
+    if(catapultSlewEnabled){
+    if(catapultMtrCurrent + CATAPULT_SLEW < mtrGoal){
+      catapultMtrCurrent += CATAPULT_SLEW;
+    } else if(catapultMtrCurrent - CATAPULT_SLEW > mtrGoal){
+      catapultMtrCurrent -= CATAPULT_SLEW;
+    } else{
+      catapultMtrCurrent = mtrGoal;
+    }
+  } else {
+    catapultMtrCurrent = catapultMtrGoal;
   }
-  motorSet(CATAPULT_A_MTR, power);
-  motorSet(CATAPULT_B_MTR, power);
+  motorSet(CATAPULT_A_MTR, catapultMtrCurrent);
+  motorSet(CATAPULT_B_MTR, catapultMtrCurrent);
 }
 
 void setCatapultPos(int posGoal){

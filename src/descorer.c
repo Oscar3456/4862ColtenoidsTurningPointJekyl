@@ -1,13 +1,17 @@
 #include "main.h"
 #include "descorer.h"
 
-  Encoder descorerEnc;
+Encoder descorerEnc;
 
 int error;
 
 int descorerMtrGoal;
 int descorerPosGoal;
 bool descorerPIDEnabled;
+
+void initDescorer(){
+    descorerEnc = encoderInit(DESCORER_ENC_TOP, DESCORER_ENC_BOT, false);
+}
 
 void setDescorerMtr(int power){
   if (getDescorerEnc() < DESCORER_MIN || getDescorerEnc() > DESCORER_MAX){
@@ -26,13 +30,8 @@ int getDescorerEnc(){
 }
 
 void descorerCtrl(){
-
-  descorerEnc = encoderInit(DESCORER_ENC_TOP, DESCORER_ENC_BOT, false);
-  while(1){
-    if(descorerPIDEnabled){
-      setDescorerPos(descorerPosGoal);
-    }
-    setDescorerMtr(descorerMtrGoal);
-    wait(20);
+  if(descorerPIDEnabled){
+    setDescorerPos(descorerPosGoal);
   }
+  setDescorerMtr(descorerMtrGoal);
 }

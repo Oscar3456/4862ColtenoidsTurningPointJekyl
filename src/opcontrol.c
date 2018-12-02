@@ -33,39 +33,36 @@ void operatorControl() {
 		lcdPrint(uart1, 1, "%4d", getCatapultPot());
 		lcdPrint(uart1, 2, "%4d", catapultMtrGoal);
 
-		catapultPIDEnabled = true;
-		if(joystickGetDigital(1, 6, JOY_UP)){
-			catapultPIDEnabled = false;
-			catapultMtrGoal = -110;
-		} else if (joystickGetDigital(1, 6, JOY_DOWN)){
-			catapultPIDEnabled = false;
-			catapultMtrGoal = 0;
-		} else{
-			catapultPosGoal = -1155;
+		catapultSlewEnabled = true;
+		catapultPIDEnabled = false;
+		switch(getInputCatapultState()){
+			case 0:
+				catapultSlewEnabled = false;
+				catapultMtrGoal = 0;
+				catapultMtrCurrent = 0;
+				break;
+			case 1:
+				catapultPIDEnabled = true;
+				catapultPosGoal = -1155;
+				break;
+			case 2:
+				catapultMtrGoal = -110;
+				break;
 		}
-		catapultCtrl();
 
+		if(abs(getInputDescorer()) > 0){
+			descorerPIDEnabled = false;
+			descorerMtrGoal = getInputDescorer();
+			descorerPosGoal = getDescorerEnc();
+		} else {
+			descorerPIDEnabled = true;
+		}
 		setDriveMtr(getInputLeftDrive(), getInputRightDrive());
-/*
-		if (joystickGetDigital(1, 6, JOY_UP)){
-			setDescorerMtr(DESCORER_POWER);
-			descorerPos = getDescorerEnc();
-		} else if (joystickGetDigital(1, 6, JOY_DOWN)){
-			setDescorerMtr(DESCORER_POWER * -1);
-			descorerPos = getDescorerEnc();
-		} else {
-			setDescorerPos(descorerPos);
-		}*/
 
-		setDescorerMtr(getInputDescorer());
+		setBallIntakeMtr(getInputBallIntake());
 
-		if (joystickGetDigital(1, 5, JOY_UP)){
-			setBallIntakeMtr(BALL_INTAKE_POWER);
-		} else if (joystickGetDigital(1, 5, JOY_DOWN)){
-			setBallIntakeMtr(BALL_INTAKE_POWER * -1);
-		} else {
-			setBallIntakeMtr(0);
-		}
+		catapultCtrl();
+		descorerCtrl();
 
 		delay(20);
 	}

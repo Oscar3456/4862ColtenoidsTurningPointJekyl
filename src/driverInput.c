@@ -3,7 +3,7 @@
 
 int getInputLeftDrive(){
   int linear = joystickGetAnalog(1, 2) + joystickGetAnalog(1, 1);
-  if (abs(linear) < 15){
+  if (abs(linear) < 5){
     linear = 0;
   }
   return linear;
@@ -11,7 +11,7 @@ int getInputLeftDrive(){
 
 int getInputRightDrive(){
   int linear = joystickGetAnalog(1, 2) - joystickGetAnalog(1, 1);
-  if (abs(linear) < 15){
+  if (abs(linear) < 5){
     linear = 0;
   }
   return linear;
@@ -20,17 +20,21 @@ int getInputRightDrive(){
 int getInputCatapultState(){
   int state; // 2 to fire, 1 to be ready, 0 to be up
   if(joystickGetDigital(1, 5, JOY_UP)){
-    state = 1;
+    state = 2;
   } else if (joystickGetDigital(1, 5, JOY_DOWN)){
     state = 0;
   } else{
-    state = 2;
+    state = 1;
   }
   return state;
 }
 
 int getInputDescorer(){
-  return joystickGetAnalog(1, 3);
+  int linear = joystickGetAnalog(1, 3);
+  if (abs(linear) < 5){
+    linear = 0;
+  }
+  return linear;
 }
 
 int getInputBallIntake(){
