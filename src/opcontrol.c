@@ -30,23 +30,18 @@ void operatorControl() {
 	while (1) {
 
 		lcdClear(uart1);
-		lcdPrint(uart1, 1, "%4d", getCatapultPot());
-		lcdPrint(uart1, 2, "%4d", catapultMtrGoal);
+		lcdPrint(uart1, 1, "%4d", fwPower);
+		lcdPrint(uart1, 2, "%4d", fwVel);
 
-		catapultSlewEnabled = true;
-		catapultPIDEnabled = false;
-		switch(getInputCatapultState()){
+		switch(getInputFlywheelState()){
 			case 0:
-				catapultSlewEnabled = false;
-				catapultMtrGoal = 0;
-				catapultMtrCurrent = 0;
+				setFlywheelVelocity(0, 0);
 				break;
 			case 1:
-				catapultPIDEnabled = true;
-				catapultPosGoal = -1155;
+				setFlywheelVelocity(8000, 90);
 				break;
 			case 2:
-				catapultMtrGoal = -110;
+				setFlywheelVelocity(10000, 100);
 				break;
 		}
 
@@ -61,7 +56,6 @@ void operatorControl() {
 
 		setBallIntakeMtr(getInputBallIntake());
 
-		catapultCtrl();
 		descorerCtrl();
 
 		delay(20);

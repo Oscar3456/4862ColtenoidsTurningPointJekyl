@@ -17,8 +17,8 @@ int getInputRightDrive(){
   return linear;
 }
 
-int getInputCatapultState(){
-  int state; // 2 to fire, 1 to be ready, 0 to be up
+int getInputFlywheelState(){
+  int state; // 2 far, 1 close, 0 stop
   if(joystickGetDigital(1, 5, JOY_UP)){
     state = 2;
   } else if (joystickGetDigital(1, 5, JOY_DOWN)){

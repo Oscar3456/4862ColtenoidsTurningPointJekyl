@@ -29,9 +29,9 @@
 
 #include "ballIntake.h"
 #include "drive.h"
-#include "catapult.h"
+#include "flywheel.h"
 #include "descorer.h"
-#include "sensors.h"
+
 #include "globals.h"
 #include "driverInput.h"
 
