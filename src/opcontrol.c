@@ -30,8 +30,8 @@ void operatorControl() {
 	while (1) {
 
 		lcdClear(uart1);
-		lcdPrint(uart1, 1, "%4d", getCatapultPot());
-		lcdPrint(uart1, 2, "%4d", catapultMtrGoal);
+		lcdPrint(uart1, 1, "%4f", getEncAngle() * 57.29578);
+		lcdPrint(uart1, 2, "is it working");
 
 		catapultSlewEnabled = true;
 		catapultPIDEnabled = false;
@@ -57,12 +57,15 @@ void operatorControl() {
 		} else {
 			descorerPIDEnabled = true;
 		}
-		setDriveMtr(getInputLeftDrive(), getInputRightDrive());
+
+		leftMtrGoal = getInputLeftDrive();
+		rightMtrGoal = getInputRightDrive();
 
 		setBallIntakeMtr(getInputBallIntake());
 
 		catapultCtrl();
 		descorerCtrl();
+		driveCtrl();
 
 		delay(20);
 	}

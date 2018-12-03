@@ -1,4 +1,5 @@
 #include "main.h"
+#include "math.h"
 #include "driverInput.h"
 
 int getInputLeftDrive(){
@@ -6,6 +7,7 @@ int getInputLeftDrive(){
   if (abs(linear) < 5){
     linear = 0;
   }
+  linear = (pow(linear, 3))/16129;
   return linear;
 }
 
@@ -14,6 +16,7 @@ int getInputRightDrive(){
   if (abs(linear) < 5){
     linear = 0;
   }
+  linear = (pow(linear, 3))/16129;
   return linear;
 }
 
