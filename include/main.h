@@ -27,12 +27,13 @@
 
 #include <API.h>
 
-#include "globals.h"
 #include "ballIntake.h"
 #include "drive.h"
 #include "catapult.h"
 #include "descorer.h"
 #include "sensors.h"
+#include "globals.h"
+#include "driverInput.h"
 
 
 // Allow usage of this file in C++ programs

@@ -1,23 +1,19 @@
-#ifndef _GLOBALS_H_
-#define _GLOBALS_H_
+#ifndef _GLOBAL_H_
+#define _GLOBAL_H_
 
 //DEFINE MOTORS:
-#define BALL_INTAKE_MTR 1
-
-#define DRIVE_LEFT_A_MTR 2
+#define DRIVE_LEFT_A_MTR 2 //yes
 
 #define CATAPULT_A_MTR 3      // Power Expander A
 #define DRIVE_LEFT_B_MTR 4    // Power Expander B
 
-#define DRIVE_LEFT_C_MTR 5
-#define DRIVE_RIGHT_C_MTR 6
+#define BALL_INTAKE_MTR 5 //yed
+#define DESCORER_MTR 6 //yed
 
 #define DRIVE_RIGHT_B_MTR 7 // Power Expander C
-#define CATAPULT_B_MTR 9   // Power Expander D
+#define CATAPULT_B_MTR 8   // Power Expander D
 
-#define DRIVE_RIGHT_A_MTR 8
-
-#define DESCORER_MTR 10
+#define DRIVE_RIGHT_A_MTR 9 // yed
 
 //DEFINE ANALOG SENSORS
 
@@ -27,16 +23,7 @@
 #define DESCORER_ENC_TOP 1
 #define DESCORER_ENC_BOT 2
 
-//CATAPULT
-#define CATAPULT_UP_POS 0
-#define CATAPULT_DOWN_POS 2000
-#define CATAPULT_FIRE_POS 3000
-
-#define CATAPULT_INTEGRAL_RANGE 100
-#define CATAPULT_KP 1
-#define CATAPULT_KI 1
-
-//DESCORER
+//DESCORER DEFINITIONS
 #define DESCORER_POWER 110
 
 #define DESCORER_MAX 200
@@ -44,8 +31,65 @@
 
 #define DESCORER_KP 1
 
-//BALL INTAKE
+//CATAPULT DEFINITIONS
+#define CATAPULT_UP_POS 5
+#define CATAPULT_DOWN_POS -1050
+#define CATAPULT_FIRE_POS  -1230
+
+#define CATAPULT_SLEW 5
+
+#define CATAPULT_INTEGRAL_RANGE 400
+#define CATAPULT_KP 0.2
+#define CATAPULT_KI 0.001
+
+//BALL INTAKE DEFINITIONS
 #define BALL_INTAKE_POWER 110
 
 
-#endif // _GLOBALS_H_
+/*
+//DEFINE MOTORS:
+#define BALL_INTAKE_MTR
+
+#define DRIVE_LEFT_A_MTR
+
+#define CATAPULT_A_MTR      // Power Expander A
+#define DRIVE_LEFT_B_MTR    // Power Expander B
+
+#define DRIVE_LEFT_C_MTR
+#define DRIVE_RIGHT_C_MTR
+
+#define DRIVE_RIGHT_B_MTR // Power Expander C
+#define CATAPULT_B_MTR  // Power Expander D
+
+#define DRIVE_RIGHT_A_MTR
+
+#define DESCORER_MTR
+
+//DEFINE ANALOG SENSORS
+
+#define CATAPULT_POT
+
+//DEFINE DIGITAL SENSORS
+#define DESCORER_ENC_TOP
+#define DESCORER_ENC_BOT
+
+#define DESCORER_POWER
+
+#define DESCORER_MAX
+#define DESCORER_MIN
+
+#define DESCORER_KP
+
+
+#define CATAPULT_UP_POS
+#define CATAPULT_DOWN_POS
+#define CATAPULT_FIRE_POS
+
+#define CATAPULT_INTEGRAL_RANGE
+#define CATAPULT_KP
+#define CATAPULT_KI
+
+
+#define BALL_INTAKE_POWER
+*/
+#endif // _GLOBAL_H_

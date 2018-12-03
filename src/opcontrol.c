@@ -27,40 +27,42 @@
  * This task should never exit; it should end with some kind of infinite loop, even if empty.
  */
 void operatorControl() {
-	int descorerPos;
 	while (1) {
+
 		lcdClear(uart1);
 		lcdPrint(uart1, 1, "%4d", getCatapultPot());
-		lcdPrint(uart1, 2, "%4d", getDescorerEnc());
-		/*
-		if(joystickGetDigital(1, 5, JOY_UP)){
-			setCatapultPos(CATAPULT_FIRE_POS);
-		} else if (joystickGetDigital(1, 5, JOY_DOWN)){
-			setCatapultPos(CATAPULT_UP_POS);
-		} else{
-			setCatapultPos(CATAPULT_DOWN_POS);
+		lcdPrint(uart1, 2, "%4d", catapultMtrGoal);
+
+		catapultSlewEnabled = true;
+		catapultPIDEnabled = false;
+		switch(getInputCatapultState()){
+			case 0:
+				catapultSlewEnabled = false;
+				catapultMtrGoal = 0;
+				catapultMtrCurrent = 0;
+				break;
+			case 1:
+				catapultPIDEnabled = true;
+				catapultPosGoal = -1155;
+				break;
+			case 2:
+				catapultMtrGoal = -110;
+				break;
 		}
-		*/
 
-		setDriveMtr(joystickGetAnalog(1, 3), joystickGetAnalog(1, 2));
-
-		if (joystickGetDigital(1, 6, JOY_UP)){
-			setDescorerMtr(DESCORER_POWER);
-			descorerPos = getDescorerEnc();
-		} else if (joystickGetDigital(1, 6, JOY_DOWN)){
-			setDescorerMtr(DESCORER_POWER * -1);
-			descorerPos = getDescorerEnc();
+		if(abs(getInputDescorer()) > 0){
+			descorerPIDEnabled = false;
+			descorerMtrGoal = getInputDescorer();
+			descorerPosGoal = getDescorerEnc();
 		} else {
-			setDescorerPos(descorerPos);
+			descorerPIDEnabled = true;
 		}
+		setDriveMtr(getInputLeftDrive(), getInputRightDrive());
 
-		if (joystickGetDigital(1, 5, JOY_UP)){
-			setBallIntakeMtr(BALL_INTAKE_POWER);
-		} else if (joystickGetDigital(1, 5, JOY_DOWN)){
-			setBallIntakeMtr(BALL_INTAKE_POWER * -1);
-		} else {
-			setBallIntakeMtr(0);
-		}
+		setBallIntakeMtr(getInputBallIntake());
+
+		catapultCtrl();
+		descorerCtrl();
 
 		delay(20);
 	}
