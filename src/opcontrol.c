@@ -44,14 +44,16 @@ void operatorControl() {
 				setFlywheelVelocity(10000, 100);
 				break;
 		}
-
+/*
 		if(abs(getInputDescorer()) > 0){
 			descorerPIDEnabled = false;
 			descorerMtrGoal = getInputDescorer();
 			descorerPosGoal = getDescorerEnc();
 		} else {
 			descorerPIDEnabled = true;
-		}
+		}*/
+		descorerPIDEnabled = false;
+		descorerMtrGoal = getInputDescorer();
 		setDriveMtr(getInputLeftDrive(), getInputRightDrive());
 
 		setBallIntakeMtr(getInputBallIntake());
