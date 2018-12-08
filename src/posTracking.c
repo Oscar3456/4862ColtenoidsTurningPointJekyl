@@ -5,8 +5,16 @@ float globalX;
 float globalY;
 float globalAngle;
 
-int degreeToRad(int degrees){
+int sign(int num){
+  return num / abs(num);
+}
+
+float degreeToRad(float degrees){
   return degrees * 0.01745329251994329576923690768489;
+}
+
+float radToDegrees(float rad){
+  return rad * 57.295779513082320876798154814105;
 }
 
 void trackPos(){
@@ -57,7 +65,9 @@ void trackPos(){
 	lcdPrint(uart1, 2, "%4f", globalY);
 }
 
-void driveToPos(int x, int y, float maxVel){
+void driveToPos(int x, int y, float maxPow){
+
+  /*
   float leftVelGoal;
   float rightVelGoal;
   float outerVel;
@@ -78,17 +88,34 @@ void driveToPos(int x, int y, float maxVel){
   } else {
     rightVelGoal = outerVel;
     leftVelGoal = rightVelGoal / (leftEncGoal / rightEncGoal);
+  }*/
+}
+
+void turnToPos(float xGoal, float yGoal, int maxPow){
+  float angleGoal = atan2(yGoal - globalY, xGoal - globalX);
+  float angleErr = angleGoal - globalAngle;
+
+  rightMtrGoal = angleErr * RIGHT_TRACK_OFFSET * DRIVE_KP;
+  leftMtrGoal = angleErr * LEFT_TRACK_OFFSET * DRIVE_KP;
+
+  if(abs(rightMtrGoal) > maxPow){
+    rightMtrGoal = maxPow * sign(rightMtrGoal);
+  }
+  if(abs(leftMtrGoal) > maxPow){
+    leftMtrGoal = maxPow * sign(leftMtrGoal);
   }
 }
 
-void turnToAngle(float angle, float maxVel){
-  float velGoal;
+void turnToAngle(float angleGoal, int maxPow){
+  float angleErr = angleGoal - globalAngle;
 
-  velGoal = (angle - globalAngle) * LEFT_TRACK_OFFSET * DRIVE_KP;
-  if (velGoal > maxVel){
-    velGoal = maxVel;
+  rightMtrGoal = angleErr * RIGHT_TRACK_OFFSET * DRIVE_KP;
+  leftMtrGoal = angleErr * LEFT_TRACK_OFFSET * DRIVE_KP;
+  
+  if(abs(rightMtrGoal) > maxPow){
+    rightMtrGoal = maxPow * sign(rightMtrGoal);
   }
-
-  float rightVelGoal = velGoal * -1;
-  float leftVelGoal = velGoal;
+  if(abs(leftMtrGoal) > maxPow){
+    leftMtrGoal = maxPow * sign(leftMtrGoal);
+  }
 }

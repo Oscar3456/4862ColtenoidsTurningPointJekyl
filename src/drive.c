@@ -1,6 +1,9 @@
 #include "main.h"
 #include "drive.h"
 
+int rightMtrGoal;
+int leftMtrGoal;
+
 void setDriveMtr(int leftPower, int rightPower){
   leftPower *= -1;
   rightPower *= -1;
