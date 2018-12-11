@@ -5,7 +5,7 @@ int getInputLeftDrive();
 
 int getInputRightDrive();
 
-int getInputCatapultState();
+int getInputFlywheelState();
 
 int getInputDescorer();
 
