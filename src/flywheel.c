@@ -20,7 +20,6 @@ int fwVelGoal;
 Encoder flywheelEnc;
 
 void initFlywheel(){
-  uint32_t runTime = millis(); // start a timer
   flywheelEnc = encoderInit(FW_ENC_TOP, FW_ENC_BOT, false);
 }
 
@@ -30,6 +29,7 @@ void setFlywheelMtr(int power){
 }
 
 int getFlywheelVelocity(){
+  fwTime = RUN_TIME;
   fwDeltaTime = fwTime-fwPrevTime; // calculate time difference
   fwDeltaTime /= 1000;
 

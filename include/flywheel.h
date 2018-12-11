@@ -1,6 +1,8 @@
 #ifndef _FLYWHEEL_H_
 #define _FLYWHEEL_H_
 
+#define RUN_TIME millis()
+
 extern int fwPrevTime;
 extern int fwDeltaTime;
 extern int fwTics;
